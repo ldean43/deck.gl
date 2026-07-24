@@ -12,6 +12,7 @@ import type {BinaryAttribute} from '../lib/attribute/attribute';
 import type {TypedArray} from '../types/types';
 import type {AccessorFunction} from '../types/layer-props';
 import type {TypedArrayManager} from './typed-array-manager';
+import {count} from './count';
 
 type ExternalBuffer = TypedArray | Buffer | BinaryAttribute;
 
@@ -208,6 +209,8 @@ export default abstract class Tesselator<GeometryT, NormalizedGeometryT, ExtraOp
         startRow,
         endRow
       );
+      vertexStarts.length = count(data) + 1;
+      indexStarts.length = vertexStarts.length;
       // count instances
       instanceCount = vertexStarts[vertexStarts.length - 1];
     } else {
